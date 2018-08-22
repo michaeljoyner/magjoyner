@@ -8,7 +8,7 @@ section: post_content
 published: true
 ---
 
-<h3 class="subheading">The setup</h3>
+<h3 class="font-sans text-sm">The setup</h3>
 
 Let's say we are making an AvatarUpload component. The component includes a file input, which allows the user to select an image to use as their avatar. Once they have selected an image, the component would validate the selected file, then upload it and notify the user of the result. A preview of the image will also be shown while it is uploaded.
 
@@ -53,7 +53,7 @@ export default {
 </script>
 ```
 
-<h3 class="subheading">The Tests</h3>
+<h3 class="font-sans text-sm">The Tests</h3>
 
 From looking at the above, these are some of the tests I would like to have:
 
@@ -77,7 +77,7 @@ test("it handles a file input change", () => {
 });
 ```
 
-<h3 class="subheading">The Problem and a solution</h3>
+<h3 class="font-sans text-sm">The Problem and a solution</h3>
 
 As nice and readable as this test is, it will not run. The problem is that the files property of a file input must be an object of the FileList type. An it is not easy or reasonably possible to create your own FileList. Now it seems impossible to stub out files for testing. Luckily, there is still an easy way to do it. In our event handler, instead of reading the files from the event itself, we can create a new method whose sole job is to get the file. So now the relevant part of our component will look something like this:
 
