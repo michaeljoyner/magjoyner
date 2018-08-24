@@ -66,7 +66,7 @@ If you have a look through those tests, it is clear that the first three need yo
 
 ```js
 test("it handles a file input change", () => {
-  let warpper = mount(AvatarUpload);
+  let wrapper = mount(AvatarUpload);
 
   let file_input = wrapper.find("file[type=input]");
   //try stub a file with an invalid image type
