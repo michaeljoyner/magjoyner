@@ -5,7 +5,7 @@ description: Choosing the right approach to a given problem, or the right proble
 nutshell: There are so many options these days to solve a technological problem, choosing the correct path can be overwhelming. But really, you know what to do.
 post_date: 25 August 2018
 section: post_content
-published: true
+published: false
 ---
 
 <h3 class="font-sans text-sm">A bit of backstory</h3>

@@ -5,31 +5,31 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <link rel="stylesheet" href="/assets/build/css/main.css?id=53b32b06140f4bc77a88">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=01254c26c8796fca9042">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:300" rel="stylesheet">
     </head>
-    <body class="font-sans text-black pt-20 leading-normal">
-    <header class="flex justify-between p-4 shadow fixed pin-t w-full bg-white">
-    <div>
+    <body class="font-serif text-black pt-20 leading-normal">
+        <header class="flex justify-between p-4 shadow fixed pin-t w-full bg-white">
+    <div class="font-sans">
         <a href="/" class="no-underline font-black text-xl">
         <span class="text-grey">MAG</span><span class="text-black">JOYNER</span>
         </a>
     </div>
     <div>
-        <span>
-        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="heroicon-ui" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/></svg>
-        </span>
+        <a class="no-underline text-black hover:text-red" href="https://github.com/michaeljoyner">
+        <svg aria-labelledby="simpleicons-github-icon" role="img" viewBox="0 0 24 24" height="24px" class="fill-current" xmlns="http://www.w3.org/2000/svg"><title id="simpleicons-github-icon">GitHub icon</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
     </div>
-</header>
-<div class="px-4 max-w-lg mx-auto">
-<div class="mb-4">
-    <h1 class="text-3xl font-black pb-2 capitalize">Testing file inputs in vue components</h1>
-    <p class="uppercase text-xs tracking-wide font-bold text-grey-dark">19 August 2018</p>
-</div>
-    <div class="my-8 p-4 bg-purple-lightest">
-        <p class="uppercase text-xs tracking-wide font-bold text-black">In a Nutshell</p>
-        <p class="mt-4">Don&#039;t bother trying to mock or stub the files property of the file input. Rather add a method that can be both stubbed and tested, and allows you to test with your own file objects.</p>
-    </div>
-        <h3 class="subheading">The setup</h3>
+</header>        <div class="px-4 max-w-lg mx-auto lg:text-xl">
+            <div class="mb-4">
+                <h1 class="text-3xl font-black font-sans pb-2 capitalize lg:text-5xl">Testing file inputs in vue components</h1>
+                <p class="uppercase text-xs tracking-wide font-bold text-grey-dark">19 August 2018</p>
+            </div>
+            <div class="my-8 p-4 bg-purple-lightest">
+                <p class="uppercase text-xs tracking-wide font-bold text-black">In a Nutshell</p>
+                <p class="mt-4">Don&#039;t bother trying to mock or stub the files property of the file input. Rather add a method that can be both stubbed and tested, and allows you to test with your own file objects.</p>
+            </div>
+            <h3 class="font-sans text-sm">The setup</h3>
 <p>Let's say we are making an AvatarUpload component. The component includes a file input, which allows the user to select an image to use as their avatar. Once they have selected an image, the component would validate the selected file, then upload it and notify the user of the result. A preview of the image will also be shown while it is uploaded.</p>
 <p>So our Vue component may look something like this:</p>
 <pre><code class="language-html">&lt;template&gt;
@@ -68,7 +68,7 @@ export default {
     }
 }
 &lt;/script&gt;</code></pre>
-<h3 class="subheading">The Tests</h3>
+<h3 class="font-sans text-sm">The Tests</h3>
 <p>From looking at the above, these are some of the tests I would like to have:</p>
 <ul>
 <li>an invalid-file event is emitted if a non-image file is selected</li>
@@ -78,7 +78,7 @@ export default {
 </ul>
 <p>If you have a look through those tests, it is clear that the first three need you to provide a file with specific criterea. From the vue-test-utils docs, we know we can't change the target of a triggered event, so to test a specific value, we need to do set the input's value ourselves before triggering the event. So we would try something like this:</p>
 <pre><code class="language-js">test("it handles a file input change", () =&gt; {
-  let warpper = mount(AvatarUpload);
+  let wrapper = mount(AvatarUpload);
 
   let file_input = wrapper.find("file[type=input]");
   //try stub a file with an invalid image type
@@ -87,7 +87,7 @@ export default {
 
   expect(wrapper.emitted()["invalid-file"]).toBeDefined();
 });</code></pre>
-<h3 class="subheading">The Problem and a solution</h3>
+<h3 class="font-sans text-sm">The Problem and a solution</h3>
 <p>As nice and readable as this test is, it will not run. The problem is that the files property of a file input must be an object of the FileList type. An it is not easy or reasonably possible to create your own FileList. Now it seems impossible to stub out files for testing. Luckily, there is still an easy way to do it. In our event handler, instead of reading the files from the event itself, we can create a new method whose sole job is to get the file. So now the relevant part of our component will look something like this:</p>
 <pre><code class="language-js">import uploadImage from "./uploadImage";
 
@@ -146,8 +146,8 @@ export default {
 
   expect(wrapper.vm.takeFile(event)).toEqual(file);
 });</code></pre>
-<p>Hopefully this has shown an easy way to test file inputs where you need some control over the files in your tests, and saves you some of the time I wasted trying to figure this out.</p>        <script src="/assets/build/js/main.js?id=bec1fb078a2fd07a5c8f"></script>
+<p>Hopefully this has shown an easy way to test file inputs where you need some control over the files in your tests, and saves you some of the time I wasted trying to figure this out.</p>        </div>
+        <script src="/assets/build/js/main.js?id=bec1fb078a2fd07a5c8f"></script>
     </body>
 </html>
-</div>
 
