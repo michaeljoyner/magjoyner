@@ -2,7 +2,7 @@
 
 return [
     'baseUrl' => 'https://magjoyner.com',
-    'production' => false,
+    'production' => true,
     'collections' => [
         'posts'
     ],
