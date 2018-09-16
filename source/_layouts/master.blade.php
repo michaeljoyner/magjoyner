@@ -2,6 +2,7 @@
 <html lang="en" class="h-full">
     <head>
         <meta charset="utf-8">
+        <title>MAGJoyner</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
@@ -13,5 +14,12 @@
         </div>
         <footer class="h-8 w-full bg-grey-darkest"></footer>
         <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
+        @if($page->production)
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-51468211-17','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        @endif
     </body>
 </html>

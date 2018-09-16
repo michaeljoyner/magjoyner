@@ -7,6 +7,14 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:300" rel="stylesheet">
+        <meta name="og:image" content="https://picsum.photos/1200/630/?random"/>
+        <meta name="og:url" content="{{ $page->getUrl() }}"/>
+        <meta name="og:title" content="{{ $page->title }}"/>
+        <meta name="og:site_name" content="MAGJoyner"/>
+        <meta name="og:type" content="Website"/>
+        <meta name="og:description" content="{{ $page->description }}"/>
+        <meta name="description" content="{{ $page->description }}">
+        <meta name="twitter:card" content="summary_large_image">
     </head>
     <body class="font-serif text-black pt-20 leading-normal">
         @include('_layouts.header')
@@ -42,6 +50,13 @@
         </div>
         <footer class="h-8 w-full bg-grey-darkest"></footer>
         <script src="{{ mix('js/main.js', 'assets/build') }}"></script>
+        @if($page->production)
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-51468211-17','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        @endif
     </body>
 </html>
 
