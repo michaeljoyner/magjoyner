@@ -92,4 +92,12 @@ p {
   margin: 1.2rem 0;
 }
 
+.post-content a {
+  color: #cb4b16;
+}
+
+.post-content a:hover {
+  color: #073642;
+}
+
 @tailwind utilities;
