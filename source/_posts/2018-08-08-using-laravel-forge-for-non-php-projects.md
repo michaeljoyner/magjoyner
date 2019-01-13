@@ -6,6 +6,7 @@ nutshell: Laravel Forge has some awesome features that can be leveraged for non-
 post_date: 31 August 2018
 section: post_content
 published: true
+number: 2
 ---
 
 Forge has some great features that we will take advantage of, but it is really aimed at Laravel/PHP apps. So if you are planning on a large scale, big money Node project, maybe you should find a more specialized solution. However, if you are already a Forge user and have some server space to spare, and find yourself with a Node itch to scratch, read on.

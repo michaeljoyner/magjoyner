@@ -6,6 +6,7 @@ nutshell: Don't bother trying to mock or stub the files property of the file inp
 post_date: 19 August 2018
 section: post_content
 published: true
+number: 1
 ---
 
 <h3 class="font-sans text-sm">The setup</h3>
@@ -16,40 +17,40 @@ So our Vue component may look something like this:
 
 ```html
 <template>
-    <!-- some other template stuff  -->
-    <input type="file" id="unique-id" @change="handleImageSelected" />
-    <!-- more template stuff  -->
+  <!-- some other template stuff  -->
+  <input type="file" id="unique-id" @change="handleImageSelected" />
+  <!-- more template stuff  -->
 </template>
 
 <script>
-import uploadImage from "./uploadImage";
+  import uploadImage from "./uploadImage";
 
-export default {
+  export default {
     // some stuff
 
     methods: {
-        handleImageSelected(ev) {
-            const file = ev.target.files[0];
+      handleImageSelected(ev) {
+        const file = ev.target.files[0];
 
-            if(isValidImage(file)) {
-                return this.processImage(image);
-            }
-
-            this.$emit("invalid-file");
-        },
-
-        isValidImage(file) {
-            //checks if file is image and under a certain size
-        },
-
-        processImage(image_file) {
-            this.showPreview(image_file);
-            uploadImage(image_file)
-                .then(() => this.$emit("avatar-updated"))
-                .catch(() => this.$emit("upload-failed"));
+        if (isValidImage(file)) {
+          return this.processImage(image);
         }
+
+        this.$emit("invalid-file");
+      },
+
+      isValidImage(file) {
+        //checks if file is image and under a certain size
+      },
+
+      processImage(image_file) {
+        this.showPreview(image_file);
+        uploadImage(image_file)
+          .then(() => this.$emit("avatar-updated"))
+          .catch(() => this.$emit("upload-failed"));
+      }
     }
-}
+  };
 </script>
 ```
 
