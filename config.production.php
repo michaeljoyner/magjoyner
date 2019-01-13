@@ -4,6 +4,8 @@ return [
     'baseUrl' => 'https://magjoyner.com',
     'production' => true,
     'collections' => [
-        'posts'
+        'posts' => [
+            'sort' => '-number'
+        ]
     ],
 ];
