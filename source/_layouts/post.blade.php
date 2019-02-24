@@ -16,7 +16,7 @@
         <meta name="description" content="{{ $page->description }}">
         <meta name="twitter:card" content="summary_large_image">
     </head>
-    <body class="font-serif text-black pt-20 leading-normal">
+    <body class="font-serif text-black pt-32 leading-normal">
         @include('_layouts.header')
         <div class="px-4 max-w-lg mx-auto lg:text-xl">
             <div class="mb-4">
