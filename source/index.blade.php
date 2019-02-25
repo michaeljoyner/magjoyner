@@ -2,7 +2,7 @@
 
 @section('body')
 @include('_layouts.header')
-<section class="max-w-lg mx-auto lg:text-2xl leading-normal px-8">
+<section class="max-w-lg mx-auto md:text-2xl leading-normal px-8 md:px-16 lg:px-8">
 <h1 class="text-3xl">
     Hello there, and welcome!
 </h1>
