@@ -11,7 +11,7 @@
 
 </p>
 <p>
-    When I am not developing the web I am probably doing some wild and recklessly cool things, because that's what I need you you to believe.
+    When I am not developing the web I may or may not be doing some wild and recklessly cool things.
 </p>
 <p>
     I am very open to both short and longer term work opportunities (as long as they are remote), so feel free to <a href="mailto:joyner.michael@gmail.com" class="text-red hover:text-blue">get in touch about that</a>. Otherwise I occasionally write some web dev related <a href="/blog" class="text-red hover:text-blue">articles</a>, because I feel obliged. You are equally as obliged to read them.
