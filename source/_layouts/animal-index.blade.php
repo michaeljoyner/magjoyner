@@ -2,19 +2,20 @@
 <html lang="en" class="h-full">
     <head>
         <meta charset="utf-8">
-        <title>MAGJoyner</title>
+        <title>Animal Almanac | MAGJoyner</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:300" rel="stylesheet">
 
         <meta name="og:image" content="https://picsum.photos/1200/630/?random"/>
-        <meta name="og:url" content="https://magjoyner.com"/>
-        <meta name="og:title" content="MAGJoyner"/>
+        <meta name="og:url" content="{{ $page->getUrl() }}"/>
+        <meta name="og:title" content="{{ $page->title }}"/>
         <meta name="og:site_name" content="MAGJoyner"/>
         <meta name="og:type" content="Website"/>
-        <meta name="og:description" content="The personal site of MAG Joyner, web developer ordaniare."/>
-        <meta name="description" content="The personal site of MAG Joyner, web developer ordaniare.">
+        <meta name="og:description" content="A collection of animals and interesting facts about said animals."/>
+        <meta name="description" content="A collection of animals and interesting facts about said animals.">
         <meta name="twitter:card" content="summary_large_image">
     </head>
     <body class="font-serif text-black pt-32 min-h-full flex flex-col">

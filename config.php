@@ -6,6 +6,9 @@ return [
     'collections' => [
         'posts' => [
             'sort' => '-number'
+        ],
+        'animals' => [
+            'sort' => '-number'
         ]
     ],
 ];

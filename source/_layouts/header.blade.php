@@ -4,7 +4,7 @@
         <span class="text-grey">MAG</span><span class="text-black">JOYNER</span>
         </a>
     </div>
-    <div onclick="alert('RARRRR!!')">
+    <a href="/animals">
         <img src="/assets/images/dino.png" alt="A visous dinosaur" class="w-16">
-    </div>
+    </a>
 </header>
