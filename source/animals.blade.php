@@ -7,7 +7,7 @@
 @foreach($animals as $animal)
 <div class="w-1/2 px-4">
 <a href="{{ $animal->getPath() }}" class="text-black font-sans text-grey-darkest hover:text-red-light no-underline capitalize">
-    <img src="/assets/images/animals/{{ $animal->image }}" alt="{{ $animal->alt }}" class="max-w-full block mx-auto w-48 h-48">
+    <img src="/assets/images/animals/{{ $animal->image }}" alt="{{ $animal->alt }}" class="max-w-full block mx-auto w-48">
 </a>
 </div>
 @endforeach
