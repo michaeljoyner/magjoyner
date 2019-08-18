@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <link rel="stylesheet" href="{{ mix('css/main.css', 'assets/build') }}">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Slab:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700&display=swap" rel="stylesheet">
 
         <meta name="og:image" content="https://picsum.photos/1200/630/?random"/>
         <meta name="og:url" content="https://magjoyner.com"/>
@@ -17,7 +17,7 @@
         <meta name="description" content="The personal site of MAG Joyner, web developer ordaniare.">
         <meta name="twitter:card" content="summary_large_image">
     </head>
-    <body class="font-serif text-black pt-32 min-h-full flex flex-col">
+    <body class="font-body font-light text-black pt-32 min-h-full flex flex-col bg-gray-800 text-gray-100">
         <div class="flex-1">
             @yield('body')
         </div>
