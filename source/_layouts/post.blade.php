@@ -15,6 +15,7 @@
         <meta name="og:description" content="{{ $page->description }}"/>
         <meta name="description" content="{{ $page->description }}">
         <meta name="twitter:card" content="summary_large_image">
+        <meta name="theme-color" content="#2d3748">
     </head>
     <body class="font-body font-light text-gray-100 bg-gray-800 pt-32 leading-normal">
         @include('_layouts.header')

@@ -16,8 +16,9 @@
         <meta name="og:description" content="The personal site of MAG Joyner, web developer ordaniare."/>
         <meta name="description" content="The personal site of MAG Joyner, web developer ordaniare.">
         <meta name="twitter:card" content="summary_large_image">
+        <meta name="theme-color" content="#2d3748">
     </head>
-    <body class="font-body font-light text-black pt-32 min-h-full flex flex-col bg-gray-800 text-gray-100">
+    <body class="font-body font-light pt-32 min-h-full flex flex-col bg-gray-800 text-gray-100">
         <div class="flex-1">
             @yield('body')
         </div>
