@@ -6,7 +6,7 @@
 <h1 class="text-4xl font-bold">
     Hi there,
 </h1>
-<p>My name is Michael, and I am a web developer. I currently ply my trade at <a href="https://dymanticdesign.com" class="text-yellow-600 hover:underline">Dymantic Design</a>, which is a design and web development studio that I co-founded.</p>
+<p>My name is Michael, and I am a web developer. I currently practice my craft at <a href="https://dymanticdesign.com" class="text-yellow-600 hover:underline">Dymantic Design</a>, which is a design and web development studio that I co-founded.</p>
 
 <p>
     My guiding philosophy for development is to strive for simplicity and cover myself with tests.

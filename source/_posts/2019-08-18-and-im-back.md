@@ -11,7 +11,7 @@ number: 4
 
 It has been far too long since I lasted tended to this site. It is my garden, andf I left it to wither and die. It is black mark on my soul, and the time has come to make things right.
 
-There are many reasons why I didn't post for a while, some valid and some not. For times, I was just busy. Also, I lost sight of what I was doind this for.
+There are many reasons why I didn't post for a while, some valid and some not. For times, I was just busy. Also, I lost sight of what I was doing this for.
 
 Writing tutorial type posts is nice, because it can just be very straightforward nad cut and dry. However, I started to feel that I had nothing to share that hasn't already been written by someone far more knowlegable than me. The problem with that line of thinking is that you are actually writing for yourself, not others. At the very least, by writing about something you allow yourself to better understand the subject. Additionaly, you will have something to refer to if youever forget.
 
