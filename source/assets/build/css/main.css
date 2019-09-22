@@ -711,6 +711,11 @@ p {
   color: #073642;
 }
 
+.post-content ul {
+  list-style-type: circle;
+  padding-left: 1rem;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

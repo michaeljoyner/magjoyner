@@ -28,7 +28,7 @@
                 <p class="uppercase text-xs tracking-wide font-bold text-white">In a Nutshell</p>
                 <p class="mt-4">{{ $page->nutshell }}</p>
             </div>
-            <div class="post-content">
+            <div class="post-content leading-relaxed">
                 @yield('post_content')
             </div>
         </div>
