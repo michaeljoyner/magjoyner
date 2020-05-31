@@ -6,18 +6,15 @@
 <h1 class="text-4xl font-bold">
     Hi there,
 </h1>
-<p>My name is Michael, and I am a web developer. I currently practice my craft at <a href="https://dymanticdesign.com" class="text-yellow-600 hover:underline">Dymantic Design</a>, which is a design and web development studio that I co-founded.</p>
+<p>My name is Michael, and I am the <span class="line-through">only</span> best web developer at <a href="https://dymanticdesign.com" class="text-yellow-600 hover:underline">Dymantic Design</a>, which is a <span class="line-through">small</span> fantastic design and web development studio.</p>
+
 
 <p>
-    My guiding philosophy for development is to strive for simplicity and cover myself with tests.
+    Most of my client projects are built using Laravel and Vue, along with HTML/CSS of course. I also really enjoy building things in Golang and Node.
 </p>
 
 <p>
-    I do most of my professional work in Laravel and Vue, along with HTML/CSS of course. I also realy enjoy Node and use it on several internal or personal projects, and some of the most fun I've had programming is making my own little tools in Go.
-</p>
-
-<p>
-    Occasionally I write some web dev related <a href="/blog" class="text-yellow-600 hover:underline">articles</a>, of which you are welcome to read. I plan on trying to increase my writing output, but I'd be lying if I said I hadn't promised that before. 
+    I <span class="line-through">occasionally</span> used to write some web dev related <a href="/blog" class="text-yellow-600 hover:underline">articles</a>, of which you are welcome to read. 
 </p>
 <p>
     If you'd like me to work with (or for you), feel free to <a href="mailto:joyner.michael@gmail.com" class="text-yellow-600 hover:underline">get in touch</a>. 
