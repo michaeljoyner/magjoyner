@@ -1,5 +1,5 @@
 module.exports = {
-  purge: ["./src/**/*.html", "./src/**/*.vue"],
+  purge: ["./source/**/*.html", "./source/**/*.vue"],
   theme: {
     fontFamily: {
       display: ["Montserrat", "sans-serif"],
