@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Where to put static data in your Laravel app</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=3fb627aaaf689ac2fc0c">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+        <meta name="og:image" content="https://picsum.photos/1200/630/?random"/>
+        <meta name="og:url" content="https://magjoyner.com/posts/2019-01-08-where-to-put-static-data-in-laravel"/>
+        <meta name="og:title" content="Where to put static data in your Laravel app"/>
+        <meta name="og:site_name" content="MAGJoyner"/>
+        <meta name="og:type" content="Website"/>
+        <meta name="og:description" content="A look at ways to manage static data in a Laravel app"/>
+        <meta name="description" content="A look at ways to manage static data in a Laravel app">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="theme-color" content="#2d3748">
+    </head>
+    <body class="font-body font-light text-gray-100 bg-gray-800 pt-32 leading-normal">
+        <header class="flex justify-between items-center p-4 shadow fixed top-0 inset-x-0 w-full bg-gray-800">
+    <div class="font-sans">
+        <a href="/" class="no-underline font-black text-xl">
+        <span class="text-grey">MAG</span><span class="text-yellow-600">JOYNER</span>
+        </a>
+    </div>
+    <img onclick="alert('Grrrrr! I am a dinosaur.')" src="/assets/images/dino.png" alt="A visous dinosaur" class="w-16">
+</header>        <div class="px-4 max-w-2xl mx-auto lg:text-xl">
+            <div class="mb-4">
+                <h1 class="text-4xl text-yellow-600 font-bold pb-2 capitalize lg:text-5xl">Where to put static data in your Laravel app</h1>
+                <p class="uppercase text-xs tracking-wide font-bold text-grey-dark">08 January 2019</p>
+            </div>
+            <div class="my-8 p-4 bg-gray-700">
+                <p class="uppercase text-xs tracking-wide font-bold text-white">In a Nutshell</p>
+                <p class="mt-4">Database if you want queries and relationships, files if you want simplicity and version control. There are many ways to tackle this, here are a few.</p>
+            </div>
+            <div class="post-content leading-relaxed">
+                <p>Static site generators are all the rage these days, and for good reason. One of their many selling points is that there is no need to interact with a database layer. If you have some collection of information or data, you can normally just keep it in some sort of pre-defined format and the site genreator will ensure you have access to it when you need it.</p>
+
+<p>On the other hand, if you are working with a Laravel app you will most likely be using some sort of database anyway, so it stands to reason that that is where you would put any collection of orginised data. However, there are times when a more "static" approach could make sense.</p>
+
+<p>The example I will use for this discussion is this: On a project, where somewhere on the public facing site, there will be a page showing the "team". The client is a busy person and says she does not want to spend any time editing, updating or creating team members, she will just email you whatever information is needed, and you need to make the change.</p>
+
+<p>Let's look at our options.</p>
+
+<h3 class="heading">The database</h3>
+
+<p>Always a good place for data. That's probably why it's caled a database. The main reason to use a database when you have some static-seeming data (a list of the world's countries for example) is so you can create relationships between that data and other entities. A handy way to populate the database with this data is to put it into migrations. Then you have a record of it in your code-base and VCS.</p>
+
+<h3 class="heading">Leave the data in the view?</h3>
+
+<p>If we think about our example with the "team members", we can assume we don't need to relate the data (names, titles, avatarts, etc) to any other entity. We know it will just be a page showing a grid of team memebrs and their basic info.</p>
+
+<p>What would be the most straightforward way to handle this situation? Most likely it would be to just write up the page in regular old HTML, don't extract the data out at all. Then we no longer have the problem of where to put the data. It doesn't take too much thinking to see when this solution would break down, and if we were working with a collection of things, we would miss out the (essential) ability to loop over things.</p>
+
+<h3 class="heading">Keep it with the code</h3>
+
+<p>The next simplest thing to do in my opinion is write a regular class, lets call it <code>App\Team</code> and put a static function on it that returns the data just how we want it. Then we can call that in our controller to pass the data to the view, or even call it directly from the view if we are feeling wild. Something along the lines of this:</p>
+
+<pre><code class="language-php">// App/Team.php
+
+namespace App;
+
+class Team {
+    private $team_members = [
+        [
+            'name' =&gt; 'Agatha',
+            'title' =&gt; 'Boss',
+            'avatar' =&gt; 'public/images/team/agatha.png'
+        ],
+        [
+            'name' =&gt; 'Hercule',
+            'title' =&gt; 'Chief Investigative Officer',
+            'avatar' =&gt; 'public/images/team/hercule.png'
+        ],
+        //...
+    ];
+
+    public static function members() {
+        return $this-&gt;team_members;
+    }
+}
+
+// somewhere in a controller
+
+public function show() {
+    $members = App\Team::members();
+
+    return view('team.page', ['members' =&gt; $members]);
+}
+</code></pre>
+
+<p>That works well, and for our example where we only have one kind of entity I would be very tempted to use it. If it's not the solution for you, read on.</p>
+
+<p>A similar approach is to bind something to Laravel's container. Eveyone loves the container. You would do this in a <code>ServiceProvider</code> of your choice, and our example (at its most basic) would look something like this:</p>
+
+<pre><code class="language-php">//in AppServiceProvider, or any other registered service provider
+
+public function register() {
+    $this-&gt;app-&gt;bind('team', function() {
+        return [
+        [
+            'name' =&gt; 'Agatha',
+            'title' =&gt; 'Boss',
+            'avatar' =&gt; 'public/images/team/agatha.png'
+        ],
+        [
+            'name' =&gt; 'Hercule',
+            'title' =&gt; 'Chief Investigative Officer',
+            'avatar' =&gt; 'public/images/team/hercule.png'
+        ],
+        //...
+    ]
+    });
+}
+
+// somewhere in a controller
+
+public function show() {
+    $members = app('team');
+
+    return view('team.page', ['members' =&gt; $members]);
+}
+</code></pre>
+
+<p>These approaches work well, in many cases are all that is needed. There are still drawbacks though, you either end up repeating similar classes, or cluttering up your ServiceProviders.</p>
+
+<h3 class="heading">Just copy Laravel</h3>
+
+<p>Consider the way Laravel handles config data. That seems to me to be exactly the solution I am looking for. The data exists in its own dedicated files, and there is a very elegant way to retrieve that data, such as using the sexy helper function <code>config('my-key', 'default-value')</code>. The best part is that we don't have to worry about how Laravel reads in the data or makes it available to us. No ServiceProviders or classes, just simple php files with assosiative arrays. This appeals to me as a great way to handle static data, except for one thing. The word config. My ideal situation would be just the same, except instead of putting the files in a <code>config</code> folder, there is also a <code>data</code> folder. Then make a <code>data</code> helper function that works just like the <code>config</code> helper function. Then we end up with something like this:</p>
+
+<pre><code class="language-php">//in data/team.php
+&lt;?php
+
+return [
+    [
+            'name' =&gt; 'Agatha',
+            'title' =&gt; 'Boss',
+            'avatar' =&gt; 'public/images/team/agatha.png'
+        ],
+        [
+            'name' =&gt; 'Hercule',
+            'title' =&gt; 'Chief Investigative Officer',
+            'avatar' =&gt; 'public/images/team/hercule.png'
+        ],
+        //...
+];
+
+//and in some controller
+public function show() {
+    return view('team.page', ['members' =&gt; data('team')]);
+}
+</code></pre>
+
+<p>The great part about this is that all the parts that make this work can be extracted away into a package for reuse in other projects, because your data is separated from it all. This is precisely what I have done for a project I am working on now, and so far it works wonderfully. Here is a brief breakdown of how you could do it:</p>
+
+<ul>
+<li>Create your data directory and add your data as assosiative arrays in php files, just like the confog folder.</li>
+<li>Make a <code>DataRepository</code> (name it whatever you want), that on construction takes a directory name, reads all the files in that directory and creates a store of all the data in those files. Probably add some caching here.</li>
+<li>Add a nice <code>get</code> method to your <code>DataRepository</code></li>
+<li>Write a helper function that just calls the get method on your <code>DataRepository</code></li>
+<li>Make a ServiceProvider that creates the new <code>DataRepository</code> and binds it to the container</li>
+<li>You're done</li>
+</ul>
+
+<p>Once the project is finished, I will document and "release" the package, and will update this post accordingly.</p>
+            </div>
+        </div>
+        <div class="my-12">
+            <div class="flex justify-center items-center">
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmagjoyner.com%2Fposts%2F2019-01-08-where-to-put-static-data-in-laravel"
+                class="no-underline text-yellow-600 hover:text-gray-100 mx-4">
+                <svg height="30px" class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.32 65.33"><path d="M32.66,0A32.67,32.67,0,1,0,65.32,32.66,32.66,32.66,0,0,0,32.66,0Zm7.41,27.75-.34,4.34H35.28V47.17H29.66V32.09h-3V27.75h3V24.84c0-1.29,0-3.27,1-4.5a5.35,5.35,0,0,1,4.66-2.18,18.83,18.83,0,0,1,5.38.54l-.75,4.44a10.17,10.17,0,0,0-2.42-.36c-1.16,0-2.21.42-2.21,1.58v3.39Z"/></svg>
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=Where+to+put+static+data+in+your+Laravel+app+https%3A%2F%2Fmagjoyner.com%2Fposts%2F2019-01-08-where-to-put-static-data-in-laravel"
+                class="no-underline text-yellow-600 hover:text-gray-100 mx-4">
+                <svg xmlns="http://www.w3.org/2000/svg" height="30px" class="fill-current" viewBox="0 0 65.32 65.33"><path d="M32.66,0A32.67,32.67,0,1,0,65.32,32.66,32.66,32.66,0,0,0,32.66,0ZM45,26.34c0,.27,0,.55,0,.83,0,8.4-6.39,18.09-18.09,18.09a18,18,0,0,1-9.75-2.86,12.84,12.84,0,0,0,9.42-2.63,6.35,6.35,0,0,1-5.94-4.42,5.79,5.79,0,0,0,1.19.12,6.25,6.25,0,0,0,1.68-.23A6.36,6.36,0,0,1,18.4,29v-.08a6.39,6.39,0,0,0,2.89.79,6.37,6.37,0,0,1-2-8.49,18.07,18.07,0,0,0,13.11,6.65,6.36,6.36,0,0,1,10.83-5.8,12.84,12.84,0,0,0,4-1.55,6.36,6.36,0,0,1-2.79,3.52,12.5,12.5,0,0,0,3.65-1A12.72,12.72,0,0,1,45,26.34Z"/></svg>
+                </a>
+                <a href="mailto:?&subject=Read&body=https://magjoyner.com/posts/2019-01-08-where-to-put-static-data-in-laravel"
+                class="no-underline text-yellow-600 hover:text-gray-100 mx-4">
+                <svg height="30px" class="fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.33 65.33"><polygon points="33.06 34.32 24.12 26.82 41.99 26.82 33.06 34.32"/><path d="M34.29,38.3l11.3-9.49V40.94H20.52V28.81l11.3,9.49a1.92,1.92,0,0,0,2.47,0Z"/><path d="M60.15,14.09a24,24,0,0,0-8.94-8.93C25.84-9.26,0,8.68,0,32.66A32.67,32.67,0,0,0,32.67,65.33C56.66,65.33,74.61,39.45,60.15,14.09Zm-10.72,27a3.7,3.7,0,0,1-3.7,3.7H20.38a3.7,3.7,0,0,1-3.7-3.7V26.68a3.7,3.7,0,0,1,3.7-3.7H45.73a3.7,3.7,0,0,1,3.7,3.7Z"/></svg>
+                </a>
+            </div>
+        </div>
+        <footer class="h-8 w-full bg-grey-darkest"></footer>
+        <script src="/assets/build/js/main.js?id=4d330bc3cc64e439b864"></script>
+                <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-51468211-17','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+            </body>
+</html>
+
